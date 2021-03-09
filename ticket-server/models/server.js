@@ -18,7 +18,7 @@ class Server {
 		// Configuraciones de sockets
 		this.io = socketio(this.server, {
 			cors: {
-				origin: 'http://localhost:3000',
+				origin: '*',
 				methods: ['GET', 'POST'],
 				credentials: true,
 			},
@@ -42,6 +42,10 @@ class Server {
 				statusText: 'Ok',
 				tickets: this.sockets.ticketList.ultimosTreceTickets,
 			});
+		});
+
+		this.app.get('*', (req, res) => {
+			res.sendFile(path.join(__dirname + '/../public/index.html'));
 		});
 	}
 
