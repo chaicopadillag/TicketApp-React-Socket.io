@@ -1,6 +1,6 @@
 export const getTicketsApi = async () => {
 	try {
-		const respuesta = await fetch('http://localhost:8080/ultimos');
+		const respuesta = await fetch(`${process.env.REACT_APP_HOST_SOCKET_IO}ultimos`);
 
 		if (!respuesta.ok) {
 			throw new {
